@@ -2,27 +2,31 @@
 import dayjs from "dayjs";
 import CardOnCalendar from "./CardOnCalendar";
 import { useCards } from "../context/CardContext";
+import { CardService } from "../api/cards.service";
 
 const Day = ({ day }) => {
   const { cardsOnCalendar, setCardsOnCalendar } = useCards();
 
-  const handleDrop = (e) => {
+  const handleDrop = async (e) => {
     e.preventDefault();
     const cardTransfer = e.dataTransfer.getData("card");
     if (cardTransfer) {
       const card = JSON.parse(cardTransfer);
       if (card.isOnCalendar) {
-        const cardsUpdated = cardsOnCalendar.map((cardArg) =>
-          cardArg.id === card.id ? { ...cardArg, day } : cardArg
+        const dayjsToISOString = day.toISOString();
+        const updatedCard = await CardService.updateCard(card._id, { day: dayjsToISOString });
+        const cardsUpdated = cardsOnCalendar.map((cardToUpdate) =>
+          cardToUpdate._id === card._id ? updatedCard : cardToUpdate
         );
         setCardsOnCalendar(cardsUpdated);
       } else {
-        card.day = day;
-        const updatedCards = [...cardsOnCalendar, card];
+        const dayjsToISOString = day.toISOString();
+        const { _id, ...newCardWithoutId } = card;
+        const newCard = { ...newCardWithoutId, day: dayjsToISOString , isOnCalendar: true };
+        const cardResponse = await CardService.createCard(newCard);
+        const updatedCards = [...cardsOnCalendar, cardResponse];
         setCardsOnCalendar(updatedCards);
       }
-
-      card.isOnCalendar = true;
     }
   };
 
@@ -42,11 +46,11 @@ const Day = ({ day }) => {
         <p className={`text-sm p-1 my-1 text-center  ${getCurrentDayClass()}`}>
           {day.format("DD")}
         </p>
-        <div className="mt-2">
+        <div className="w-full px-2">
           {cardsOnCalendar
-            .filter((card) => card.day === day)
+            .filter((card) => dayjs(card.day).isSame(day))
             .map((card) => (
-              <CardOnCalendar key={card.id} card={card} />
+              <CardOnCalendar key={card._id} card={card} />
             ))}
         </div>
       </header>

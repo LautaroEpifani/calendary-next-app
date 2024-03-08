@@ -7,7 +7,7 @@ const Month = () => {
   const month = getMonth();
 
   return (
-      <div className="grid grid-cols-7 grid-rows-5 h-full border-x border-gray-200">
+      <div className="h-full flex-grow grid grid-cols-7 grid-rows-5 border-x border-b border-gray-200">
         {month.map((row, i) => (
           <React.Fragment key={i}>
             {row.map((day, index) => (

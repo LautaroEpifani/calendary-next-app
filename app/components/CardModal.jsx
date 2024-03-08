@@ -17,13 +17,13 @@ const CardModal = ({ setShowEventModal }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [label, setLabel] = useState(labelsClasses)
+  const isOnCalendar = false;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newCard = {title, description, label}
+    const newCard = {title, description, label, isOnCalendar}
     try {
       const response = await CardService.createCard(newCard);
-      console.log(response)
       setCards([...cards, newCard])
       setShowEventModal(false);
   } catch (error) {

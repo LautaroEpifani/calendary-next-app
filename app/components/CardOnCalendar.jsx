@@ -10,10 +10,10 @@ const CardOnCalendar = ({ card }) => {
   return (
     <motion.div
       layout
-      layoutId={card.id}
+      layoutId={card._id}
       draggable="true"
       onDragStart={(e) => handleDragStart(e, card)}
-      className="w-20 cursor-grab rounded border border-neutral-700 bg-neutral-800 p-3 active:cursor-grabbing"
+      className={`w-full mx-auto cursor-grab rounded bg-${card.label}-500 py-1 active:cursor-grabbing text-center mb-1 opacity-90 uppercase font-semibold`}
     >
       <p className="text-sm text-neutral-100">{card.title}</p>
     </motion.div>
