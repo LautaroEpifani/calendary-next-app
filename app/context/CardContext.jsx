@@ -17,7 +17,7 @@ export const CardsProvider = ({ children }) => {
       setCardsOnCalendar(cardsWithCalendar);
     })
     .catch(error => {
-      console.error("Error al obtener las cards:", error);
+      console.error("Error when obtaining cards:", error);
     });
   }, []);
 

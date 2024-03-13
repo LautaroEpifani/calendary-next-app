@@ -11,9 +11,9 @@ export class CardService {
       if (!response.ok) {
         const responseData = await response.json();
         if (response.status === 400) {
-          throw new Error(`Errores de validación: ${responseData.message[0]}`);
+          throw new Error(`Validation errors: ${responseData.message[0]}`);
         } else {
-          throw new Error("Error en la solicitud:", responseData);
+          throw new Error("Error in the application:", responseData.message[0]);
         }
       } else {
         return response.json();
@@ -29,7 +29,7 @@ export class CardService {
     });
 
     if (!response.ok) {
-      throw new Error(`Error al obtener las tarjetas: ${response.statusText}`);
+      throw new Error(`Error when obtaining cards: ${response.statusText}`);
     }
 
     return response.json();
@@ -45,7 +45,22 @@ export class CardService {
     });
 
     if (!response.ok) {
-      throw new Error(`Error al actualizar la tarjeta: ${response.statusText}`);
+      throw new Error(`Error updating the card: ${response.statusText}`);
+    }
+
+    return response.json();
+  }
+
+  static async deleteCard(id) {
+    const response = await fetch(`http://localhost:3001/cards/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error deleting card: ${response.statusText}`);
     }
 
     return response.json();

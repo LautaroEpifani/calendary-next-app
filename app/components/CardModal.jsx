@@ -27,7 +27,7 @@ const CardModal = ({ setShowEventModal }) => {
       setCards([...cards, newCard])
       setShowEventModal(false);
   } catch (error) {
-    console.error('Error al crear tarjeta:', error);
+    console.error('Error creating card:', error);
   }
   }
   

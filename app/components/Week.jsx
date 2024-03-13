@@ -7,7 +7,7 @@ const Week = () => {
   const [activeCalendarIndex, setActiveCalendarIndex] = useState(1);
 
   return (
-    <div className="grid grid-rows-1 grid-cols-7 w-full border border-gray-200">
+    <div className="h-[4%] grid grid-rows-1 grid-cols-7 w-full border border-gray-200">
       {week.map((dia, index) => {
         return (
           <div key={index} className="border-x rounded-md">
