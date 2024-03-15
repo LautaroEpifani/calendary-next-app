@@ -3,10 +3,15 @@ import { useCards } from "../context/CardContext";
 
 const Cards = () => {
   
-  const { cards } = useCards();
+  const { cards, setShowCardButtons } = useCards();
 
   const handleDragStart = (e, card) => {
     e.dataTransfer.setData("card", JSON.stringify(card));
+    setShowCardButtons(true);
+  };
+
+  const handleDragEnd = () => {
+    setShowCardButtons(false);
   };
 
   return (
@@ -16,7 +21,8 @@ const Cards = () => {
           key={card._id}
           draggable="true"
           onDragStart={(e) => handleDragStart(e, card)}
-          className={`cursor-grab rounded bg-${card.label}-500 p-3 active:cursor-grabbing text-center mb-2 opacity-85`}
+          onDragEnd={handleDragEnd}
+          className={`cursor-grab rounded bg-${card.label}-500 py-2 active:cursor-grabbing text-center mb-2 opacity-85`}
         >
           <p className="text-sm uppercase font-bold text-neutral-100">{card.title}</p>
         </div>

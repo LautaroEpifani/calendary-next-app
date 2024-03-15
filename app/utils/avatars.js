@@ -62,4 +62,6 @@ function generateRandomAvatar() {
   return createAvatar(randomCollection, {
     size: 128,
   }).toDataUriSync();
+
 }
+

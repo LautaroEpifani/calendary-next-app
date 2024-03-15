@@ -22,7 +22,7 @@ const Day = ({ day }) => {
       } else {
         const dayjsToISOString = day.toISOString();
         const { _id, ...newCardWithoutId } = card;
-        const newCard = { ...newCardWithoutId, day: dayjsToISOString , isOnCalendar: true };
+        const newCard = { ...newCardWithoutId, day: dayjsToISOString , isOnCalendar: true};
         const cardResponse = await CardService.createCard(newCard);
         const updatedCards = [...cardsOnCalendar, cardResponse];
         setCardsOnCalendar(updatedCards);

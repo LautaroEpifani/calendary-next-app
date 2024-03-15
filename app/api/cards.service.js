@@ -1,27 +1,27 @@
 export class CardService {
   static async createCard(card) {
-      const response = await fetch(`http://localhost:3001/cards/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(card),
-      });
+    const response = await fetch(`http://localhost:3001/cards/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(card),
+    });
 
-      if (!response.ok) {
-        const responseData = await response.json();
-        if (response.status === 400) {
-          throw new Error(`Validation errors: ${responseData.message[0]}`);
-        } else {
-          throw new Error("Error in the application:", responseData.message[0]);
-        }
+    if (!response.ok) {
+      const responseData = await response.json();
+      if (response.status === 400) {
+        throw new Error(`Validation errors: ${responseData.message[0]}`);
       } else {
-        return response.json();
+        throw new Error("Error in the application:", responseData.message[0]);
       }
+    } else {
+      return response.json();
+    }
   }
 
   static async getCards() {
-    const response = await fetch(`http://localhost:3001/cards/`, {
+    const response = await fetch(`http://localhost:3001/cards/cardsWithUsernames`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

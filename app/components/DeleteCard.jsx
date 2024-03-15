@@ -1,6 +1,5 @@
 "use client";
-import React, { useState } from "react";
-import { FaFire } from "react-icons/fa";
+import React from "react";
 import { FiTrash } from "react-icons/fi";
 import { useCards } from "../context/CardContext";
 import { CardService } from "../api/cards.service";
@@ -19,7 +18,8 @@ const DeleteCard = () => {
   const handleDrop = async (e) => {
     const cardTransfer = e.dataTransfer.getData("card");
     const card = JSON.parse(cardTransfer);
-    await CardService.deleteCard(card._id);
+    const deletedCard = await CardService.deleteCard(card._id);
+    console.log(deletedCard)
     if (!card.isOnCalendar) {
       setCards((pv) => pv.filter((cardSearch) => cardSearch._id !== card._id));
     } else {
@@ -34,7 +34,7 @@ const DeleteCard = () => {
       onDragEnter={handleDragEnter}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
-      className="w-11/12 flex gap-x-2 justify-center items-center border border-red-400 text-red-500 uppercase font-semibold rounded px-2 py-1"
+      className="flex gap-x-2 justify-center items-center border border-red-400 text-red-500 uppercase font-semibold rounded px-2 py-1"
     >
       {" "}
       <span>Drop card</span>

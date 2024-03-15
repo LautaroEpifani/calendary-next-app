@@ -7,18 +7,22 @@ const Squad = () => {
   const { users } = useUsers();
 
   return (
-    <div className=" text-center font-bold text-gray-500">
+    <div className=" text-center font-bold text-gray-500 px-2">
       <h1 className="py-2 border-y border-gray-200 mb-4">SQUAD</h1>
       <div className="flex justify-between">
         {users.map((user) => (
+          <div className="border border-gray-500 rounded-lg"  key={user._id}>
           <Image
-            key={user._id}
             src={user.avatarDataUri}
             width={60}
             height={60}
             quality={1}
             alt="user"
           />
+          <div className="text-black py-1 rounded-lg text-xs font-normal">
+            <h1>{user.username}</h1>
+          </div>
+           </div>
         ))}
       </div>
     </div>
