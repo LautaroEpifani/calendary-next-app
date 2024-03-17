@@ -34,7 +34,7 @@ const DeleteCard = () => {
       onDragEnter={handleDragEnter}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
-      className="flex gap-x-2 justify-center items-center border border-red-400 text-red-500 uppercase font-semibold rounded px-2 py-1"
+      className="flex gap-x-2 justify-center items-center border border-red-400 text-red-500 shadow-md uppercase font-semibold rounded px-2 py-1"
     >
       {" "}
       <span>Drop card</span>

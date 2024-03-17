@@ -14,4 +14,10 @@ export function getMonth(month = dayjs().month()) {
   return daysMatrix;
 }
 
-export const week = ["Monday", "Tuesday ", "Wednesday", "Thursday", "Friday", "Saturday ", "Sunday"]
+export function getCurrentDayClass(day) {
+  return day.format("DD-MM-YY") === dayjs().format("DD-MM-YY")
+    ? "bg-blue-600 text-white rounded-full w-7"
+    : "";
+}
+
+export const week = ["Sunday", "Monday", "Tuesday ", "Wednesday", "Thursday", "Friday", "Saturday "]

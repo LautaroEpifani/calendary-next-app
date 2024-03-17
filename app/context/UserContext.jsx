@@ -6,6 +6,7 @@ const UsersContext = createContext();
 
 export const UsersProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
+  const [theme, setTheme] = useState("light");
 
   useEffect(() => {
     UsersService.getUsers().then((data) => {
@@ -17,7 +18,7 @@ export const UsersProvider = ({ children }) => {
   }, []);
 
   return (
-    <UsersContext.Provider value={{ users, setUsers }}>
+    <UsersContext.Provider value={{ users, setUsers, theme, setTheme }}>
       {children}
     </UsersContext.Provider>
   );

@@ -11,10 +11,12 @@ import { useEffect, useState } from "react";
 import { useAuth } from "./context/AuthContext";
 import CardProperties from "./components/CardProperties";
 import { useCards } from "./context/CardContext";
+import { useUsers } from "./context/UserContext";
 
 export default function Home() {
   const { setUserLogged } = useAuth();
   const { showCardButtons } = useCards();
+  const { theme } = useUsers();
 
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [isLoading, setLoading] = useState(true);
@@ -55,28 +57,30 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="h-screen px-20">
+    <main className={`h-screen px-20 bg-background ${theme} `}>
       {isLoggedIn ? (
         <>
-          <div className="h-[10%]">
+          <div className="h-[12%]">
             <CalendarHeader />
           </div>
           <div className="flex h-[80%]">
-            <div className="w-1/5  border border-gray-200">
+            <div className="w-1/5  border-y border-l border-border ">
+            {/* border-gray-200 */}
               <Squad />
               <div className="mt-8">
-                <h1 className="w-full text-center py-2 mb-4 border-y border-gray-200 uppercase font-bold text-gray-500">
+                <h1 className="w-full text-center py-2 mb-4 border-y border-border uppercase font-bold text-gray-500">
+                  {/* border-gray-200 */}
                   Cards
                 </h1>
                 <div className="flex flex-col justify-start items-center gap-y-4">
                   <Cards />
                   <CreateButton />
-                  {showCardButtons && (
+                 
                     <div className="w-11/12 flex flex-col gap-y-2">
-                      <CardProperties />
-                      <DeleteCard />
+                      <CardProperties showCardButtons={showCardButtons} />
+                      {showCardButtons && <DeleteCard />}
                     </div>
-                  )}
+                
                 </div>
               </div>
             </div>

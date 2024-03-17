@@ -1,10 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useCards } from "../context/CardContext";
 
 const CardOnCalendar = ({ card }) => {
+
+  const { setShowCardButtons } = useCards();
+
   const handleDragStart = (e, card) => {
     e.dataTransfer.setData("card", JSON.stringify(card));
+    setShowCardButtons(true);
   };
 
   const handleDragEnd = () => {

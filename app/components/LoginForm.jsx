@@ -19,7 +19,7 @@ const LoginForm = ({ setLoggedIn, isLoading }) => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-16 p-6 bg-white rounded shadow-md">
+    <div className="max-w-md mx-auto mt-16 p-6 rounded shadow-md">
       <h2 className="text-2xl font-semibold mb-6 text-center">Sign In</h2>
       {isLoading ? (
         <div className="flex justify-center">

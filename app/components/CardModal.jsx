@@ -20,6 +20,7 @@ const CardModal = ({ setShowEventModal }) => {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [section, setSection] = useState("");
   const [label, setLabel] = useState(labelsClasses)
   const isOnCalendar = false;
 
@@ -27,8 +28,7 @@ const CardModal = ({ setShowEventModal }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newCard = {title, description, label, isOnCalendar, createdBy: userLogged.id, assignedUsers: assignedUsersId}
-  
+    const newCard = {title, description, section, label, isOnCalendar, createdBy: userLogged.id, assignedUsers: assignedUsersId}
     try {
       const responseCard = await CardService.createCard(newCard);
       setCards([...cards, responseCard])
@@ -41,7 +41,7 @@ const CardModal = ({ setShowEventModal }) => {
   return (
     <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center">
     <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-2xl w-1/4">
-      <header className="bg-gray-100 px-3 py-2 flex justify-between items-center">
+      <header className="bg-gray-100 px-3 py-2 flex justify-between items-center rounded-lg ">
         <div className="flex items-center gap-x-2 text-gray-400">
         <FaUser className='' />  <p>Created by: <span className='font-semibold text-blue-500'>{userLogged.username}</span></p>
         </div>
@@ -64,7 +64,7 @@ const CardModal = ({ setShowEventModal }) => {
               placeholder="Add title"
               value={title}
               required
-              className="pt-3 border-0 text-gray-600 text-xl  pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+              className="pt-3 text-gray-600 text-xl  pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
@@ -76,11 +76,11 @@ const CardModal = ({ setShowEventModal }) => {
               placeholder="Add description"
               value={description}
               required
-              className="pt-3 border-0 text-gray-600 pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+              className="pt-3 text-gray-600 pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
-          <SectionFilterDropdown />
+          <SectionFilterDropdown section={section}  setSection={setSection}/>
           <div className="flex items-center gap-6 text-gray-400">
             <HiColorSwatch />
             <div className="flex gap-x-2 bg-white">

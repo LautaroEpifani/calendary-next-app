@@ -2,26 +2,48 @@
 import dayjs from "dayjs";
 import Image from "next/image";
 import { useState } from "react";
+import { useCards } from "../context/CardContext";
+import { useUsers } from "../context/UserContext";
 
 export default function CalendarHeader() {
+  const { setFilterCardsOnCalendar } = useCards();
+  const { setTheme, theme } = useUsers();
 
   const [monthIndex, setMonthIndex] = useState(dayjs().month());
+  const [activeFilter, setActiveFilter] = useState(null);
+  const [isChecked, setIsChecked] = useState(false);
+
+  const setFilter = (filter) => {
+    setActiveFilter(filter);
+    setFilterCardsOnCalendar(filter);
+  };
+
+  const toggleSwitch = () => {
+    setIsChecked(!isChecked);
+    if (isChecked) {
+      setTheme("light");
+    } else {
+      setTheme("dark");
+    }
+  };
 
   return (
     <header className="h-full pr-4 flex">
-      <div className="w-1/5">
-
-      </div>
+      <div className="w-1/5"></div>
       <div className="w-full flex justify-between h-full ">
         <div className="flex items-center ">
-          <Image
-            src={"/icon.png"}
-            width={40}
-            height={40}
-            quality={1}
-            alt="icon"
-          />
-
+          <div className="relative">
+            <Image
+              src={"/icon.svg"}
+              width={70}
+              height={70}
+              quality={1}
+              alt="icon"
+            />
+            <h1 className="absolute top-1/2 -translate-x-1/2 left-1/2 -translate-y-1/2 text-blue-500 font-bold rounded-full">
+              {dayjs().date()}
+            </h1>
+          </div>
           <h1 className="mr-6 ml-2 text-xl text-gray-500 fond-bold">
             Schedule
           </h1>
@@ -31,21 +53,57 @@ export default function CalendarHeader() {
             )}
           </h2>
         </div>
-        <div className=" flex items-end">
-          <ul className="flex text-xl text-white font-bold">
-            <li className="bg-pink-400 rounded-t  py-1 px-4 cursor-pointer">
-              Calendar
-            </li>
-            <li className="bg-yellow-300 rounded-t py-1 px-4 cursor-pointer">
-              Cleaning
-            </li>
-            <li className="bg-green-400 rounded-t py-1 px-4 cursor-pointer">
-              Activities
-            </li>
-            <li className="bg-red-400 rounded-t py-1 px-4 cursor-pointer">
-              List
-            </li>
-          </ul>
+        <div className="flex flex-col justify-between items-end">
+          <div className="flex items-center gap-x-4 mt-2">
+            <div className="flex items-center gap-x-2 py-2 px-4 border border-gray-400 rounded">
+              <h1 className="capitalize text-text">{theme}</h1>
+              <input
+                type="checkbox"
+                className="toggle text-gray-300 border-gray-500"
+                checked={isChecked}
+                onChange={toggleSwitch}
+              />
+            </div>
+            <button className="text-red-500 py-2 px-8 border border-gray-400 rounded">
+              Logout
+            </button>
+          </div>
+          <div className="">
+            <ul className="flex text-xl text-white font-bold">
+              <li
+                onClick={() => setFilter(null)}
+                className={` bg-section1 rounded-t py-1 px-4 cursor-pointer ${
+                  activeFilter === null ? "scale-110 mb-0.5" : ""
+                }`}
+              >
+                Calendar
+              </li>
+              <li
+                onClick={() => setFilter("cleaning")}
+                className={` bg-section2 rounded-t py-1 px-4 cursor-pointer ${
+                  activeFilter === "cleaning" ? "scale-110 mb-0.5" : ""
+                }`}
+              >
+                Cleaning
+              </li>
+              <li
+                onClick={() => setFilter("activities")}
+                className={` bg-section3 rounded-t py-1 px-4 cursor-pointer ${
+                  activeFilter === "activities" ? "scale-110 mb-0.5" : ""
+                }`}
+              >
+                Activities
+              </li>
+              <li
+                onClick={() => setFilter("list")}
+                className={` bg-section4  rounded-t py-1 px-4 cursor-pointer ${
+                  activeFilter === "list" ? "scale-110 mb-0.5" : ""
+                }`}
+              >
+                List
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </header>

@@ -9,7 +9,7 @@ const CreateButton = () => {
   return (
     <>
       <button
-        className="w-11/12 flex gap-x-2 justify-center items-center border border-gray-400 text-gray-500 uppercase font-semibold rounded px-2 py-1"
+        className="w-11/12 flex gap-x-2 justify-center items-center border border-gray-400 text-gray-500 shadow-lg uppercase font-semibold rounded px-2 py-1"
         onClick={() => setShowEventModal(true)}
       >
         <span>Create card</span>

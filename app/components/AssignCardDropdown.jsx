@@ -52,7 +52,7 @@ const AssignCardDropdown = ({ assignedUsersId, setAssignedUsersId }) => {
           type="text"
           onClick={handleInputClick}
           placeholder="@"
-          className="border border-gray-300 p-2 rounded-md h-10 focus:border-gray-500 focus:outline-none focus:ring-0"
+          className="border border-gray-300 p-2 rounded-md h-10 focus:border-blue-500 focus:outline-none focus:ring-0"
         />
         {showDropdown && (
           <ul ref={dropdownRef} className="absolute bg-white border border-gray-300 rounded-md mt-1 w-full">

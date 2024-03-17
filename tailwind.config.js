@@ -20,6 +20,15 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        border: "rgba(var(--border))",
+        background: "rgba(var(--background))",
+        text: "rgba(var(--text))",
+        section1: "rgba(var(--section1))",
+        section2: "rgba(var(--section2))",
+        section3: "rgba(var(--section3))",
+        section4: "rgba(var(--section4))",
+      }
     },
   },
   plugins: [require("daisyui")],
