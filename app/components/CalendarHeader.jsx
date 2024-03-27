@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useCards } from "../context/CardContext";
 import { useUsers } from "../context/UserContext";
 
-export default function CalendarHeader() {
+export default function CalendarHeader({ logout }) {
   const { setFilterCardsOnCalendar } = useCards();
   const { setTheme, theme } = useUsers();
 
@@ -40,7 +40,7 @@ export default function CalendarHeader() {
               quality={1}
               alt="icon"
             />
-            <h1 className="absolute top-1/2 -translate-x-1/2 left-1/2 -translate-y-1/2 text-blue-500 font-bold rounded-full">
+            <h1 className="absolute top-1/2 -translate-x-1/2 left-1/2 -translate-y-1/2 text-gray-500 font-bold rounded-full">
               {dayjs().date()}
             </h1>
           </div>
@@ -64,7 +64,13 @@ export default function CalendarHeader() {
                 onChange={toggleSwitch}
               />
             </div>
-            <button className="text-red-500 py-2 px-8 border border-gray-400 rounded">
+            <button
+              onClick={() => {
+                logout();
+                setTheme("light");
+              }}
+              className="text-red-500 py-2 px-8 border border-gray-400 rounded"
+            >
               Logout
             </button>
           </div>

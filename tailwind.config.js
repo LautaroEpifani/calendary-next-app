@@ -28,6 +28,9 @@ module.exports = {
         section2: "rgba(var(--section2))",
         section3: "rgba(var(--section3))",
         section4: "rgba(var(--section4))",
+        button: "rgba(var(--button))",
+        hoverButton: "rgba(var(--hoverButton))",
+        
       }
     },
   },

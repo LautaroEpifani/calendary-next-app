@@ -18,7 +18,7 @@ export default function Home() {
   const { showCardButtons } = useCards();
   const { theme } = useUsers();
 
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -39,12 +39,12 @@ export default function Home() {
           if (!response.ok) {
             if (response.status === 401) {
               localStorage.removeItem("jwtToken");
-              setLoggedIn(false);
+              setIsLoggedIn(false);
               setUserLogged({});
             }
           } else {
             const userAuth = await response.json();
-            setLoggedIn(true);
+            setIsLoggedIn(true);
             setUserLogged(userAuth);
           }
         }
@@ -54,14 +54,20 @@ export default function Home() {
       setLoading(false);
     };
     checkLoggedIn();
-  }, []);
+  }, [isLoggedIn]);
+
+  const logout = () => {
+    localStorage.removeItem("jwtToken");
+    setIsLoggedIn(false);
+    setUserLogged({});
+  };
 
   return (
     <main className={`h-screen px-20 bg-background ${theme} `}>
       {isLoggedIn ? (
         <>
           <div className="h-[12%]">
-            <CalendarHeader />
+            <CalendarHeader logout={logout} />
           </div>
           <div className="flex h-[80%]">
             <div className="w-1/5  border-y border-l border-border ">
@@ -91,11 +97,13 @@ export default function Home() {
           </div>
         </>
       ) : (
+        <div className="pt-16">
         <LoginForm
-          setLoggedIn={setLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
           isLoading={isLoading}
           setLoading={setLoading}
         />
+        </div>
       )}
     </main>
   );
