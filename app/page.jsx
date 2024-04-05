@@ -66,7 +66,7 @@ export default function Home() {
     <main className={`h-screen px-20 bg-background ${theme} `}>
       {isLoggedIn ? (
         <>
-          <div className="h-[12%]">
+          <div className="">
             <CalendarHeader logout={logout} />
           </div>
           <div className="flex h-[80%]">
