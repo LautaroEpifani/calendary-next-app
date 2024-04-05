@@ -1,6 +1,6 @@
 export class CardService {
   static async createCard(card) {
-    const response = await fetch(`http://localhost:3001/cards/`, {
+    const response = await fetch(`http://ec2-18-201-224-116.eu-west-1.compute.amazonaws.com:3001/cards/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -21,7 +21,7 @@ export class CardService {
   }
 
   static async getCards() {
-    const response = await fetch(`http://localhost:3001/cards/cardsWithUsernames`, {
+    const response = await fetch(`http://ec2-18-201-224-116.eu-west-1.compute.amazonaws.com:3001/cards/cardsWithUsernames`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -36,7 +36,7 @@ export class CardService {
   }
 
   static async updateCard(id, card) {
-    const response = await fetch(`http://localhost:3001/cards/${id}`, {
+    const response = await fetch(`http://ec2-18-201-224-116.eu-west-1.compute.amazonaws.com:3001/cards/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -52,7 +52,7 @@ export class CardService {
   }
 
   static async deleteCard(id) {
-    const response = await fetch(`http://localhost:3001/cards/${id}`, {
+    const response = await fetch(`http://ec2-18-201-224-116.eu-west-1.compute.amazonaws.com:3001/cards/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
