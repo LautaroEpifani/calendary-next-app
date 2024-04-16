@@ -32,7 +32,7 @@ const LoginForm = ({ setIsLoggedIn, isLoading }) => {
               htmlFor="username"
               className="block text-gray-700 text-sm font-bold mb-2"
             >
-              Username
+              Username: <span className="text-green-600">Lana</span>
             </label>
             <input
               type="text"
@@ -48,8 +48,8 @@ const LoginForm = ({ setIsLoggedIn, isLoading }) => {
             <label
               htmlFor="password"
               className="block text-gray-700 text-sm font-bold mb-2"
-            >
-              Password
+            > 
+              Password <span className="text-green-600">newpassword</span>
             </label>
             <input
               type="password"

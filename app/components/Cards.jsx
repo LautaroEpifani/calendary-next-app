@@ -16,7 +16,7 @@ const Cards = () => {
 
   return (
     <div className="w-11/12">
-      {cards.map((card, index) => (
+      {cards.slice(0,8).map((card, index) => (
         <div
           key={card._id}
           draggable="true"

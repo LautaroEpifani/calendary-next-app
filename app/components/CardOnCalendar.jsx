@@ -23,9 +23,9 @@ const CardOnCalendar = ({ card }) => {
       draggable="true"
       onDragStart={(e) => handleDragStart(e, card)}
       onDragEnd={handleDragEnd}
-      className={`w-full mx-auto cursor-grab rounded bg-${card.label}-500 py-1 active:cursor-grabbing text-center mb-1 opacity-90 uppercase font-semibold`}
+      className={`w-full mx-auto cursor-grab rounded bg-${card.label}-500 py-1 active:cursor-grabbing text-center mb-1 opacity-90 uppercase font-semibold `}
     >
-      <p className="text-sm text-neutral-100">{card.title}</p>
+      <p className="text-xs 3xl:text-sm text-neutral-100">{card.title}</p>
     </motion.div>
   );
 };

@@ -1,6 +1,6 @@
 export class AuthService {
     static async login(user) {
-      const response = await fetch(`http://ec2-18-201-224-116.eu-west-1.compute.amazonaws.com:3001/auth/login`, {
+      const response = await fetch(`https://calendary-app-backend.vercel.app/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

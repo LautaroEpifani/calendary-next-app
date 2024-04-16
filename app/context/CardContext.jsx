@@ -8,6 +8,8 @@ export const CardsProvider = ({ children }) => {
   const [cards, setCards] = useState([]);
   const [cardsOnCalendar, setCardsOnCalendar] = useState([]);
   const [filterCardsOnCalendar, setFilterCardsOnCalendar] = useState(null);
+  const [reFetch, setReFetch] = useState(false);
+
   const [showCardButtons, setShowCardButtons] = useState(false);
 
   useEffect(() => {
@@ -21,7 +23,7 @@ export const CardsProvider = ({ children }) => {
       .catch((error) => {
         console.error("Error when obtaining cards:", error);
       });
-  }, []);
+  }, [reFetch]);
 
   return (
     <CardsContext.Provider
@@ -34,6 +36,8 @@ export const CardsProvider = ({ children }) => {
         setShowCardButtons,
         filterCardsOnCalendar,
         setFilterCardsOnCalendar,
+        reFetch,
+        setReFetch
       }}
     >
       {children}

@@ -57,11 +57,10 @@ function getRandomCollection() {
   return collections[randomIndex];
 }
 
-function generateRandomAvatar() {
+export function generateRandomAvatar() {
   const randomCollection = getRandomCollection();
   return createAvatar(randomCollection, {
     size: 128,
   }).toDataUriSync();
-
 }
 

@@ -67,7 +67,7 @@ const CardProperties = ({ showCardButtons }) => {
                   <MdTitle className="" />
                   <p className="">
                     Title:{" "}
-                    <span className="font-semibold text-red-500">
+                    <span className="font-semibold text-green-700">
                       {cardProperties.title}
                     </span>
                   </p>
@@ -76,7 +76,7 @@ const CardProperties = ({ showCardButtons }) => {
                   <MdOutlineSubtitles className="" />
                   <p>
                     Description:{" "}
-                    <span className="font-semibold text-amber-500 text-sm">
+                    <span className="font-semibold text-green-700 text-sm">
                       {cardProperties.description}
                     </span>
                   </p>
@@ -86,11 +86,15 @@ const CardProperties = ({ showCardButtons }) => {
                     <FaUsers className="" />
                     Assigned to:{" "}
                   </div>
-                  {cardProperties.assignedUsersName.map((card, index) => (
-                    <h1 key={index} className="text-purple-500 font-semibold">
-                      {card}
-                    </h1>
-                  ))}
+                  {cardProperties.assignedUsersName ? (
+                    cardProperties.assignedUsersName.map((card, index) => (
+                      <h1 key={index} className="text-green-700 font-semibold">
+                        {card}
+                      </h1>
+                    ))
+                  ) : (
+                    <h1></h1>
+                  )}
                 </div>
               </div>
             </div>

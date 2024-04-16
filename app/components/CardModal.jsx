@@ -15,7 +15,7 @@ import SectionFilterDropdown from './SectionFilterDropdown';
 
 const CardModal = ({ setShowEventModal }) => {
 
-  const { cards, setCards } = useCards();
+  const { cards, setCards, setReFetch, reFetch } = useCards();
   const { userLogged } = useAuth();
 
   const [title, setTitle] = useState("");
@@ -32,6 +32,7 @@ const CardModal = ({ setShowEventModal }) => {
     try {
       const responseCard = await CardService.createCard(newCard);
       setCards([...cards, responseCard])
+      setReFetch(!reFetch);
       setShowEventModal(false);
   } catch (error) {
     console.error('Error creating card:', error);
@@ -39,7 +40,7 @@ const CardModal = ({ setShowEventModal }) => {
   }
   
   return (
-    <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center">
+    <div className="h-screen w-full fixed left-0 top-0 z-10 flex justify-center items-center">
     <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-2xl w-1/4">
       <header className="bg-gray-100 px-3 py-2 flex justify-between items-center rounded-lg ">
         <div className="flex items-center gap-x-2 text-gray-400">

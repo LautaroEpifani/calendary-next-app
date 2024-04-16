@@ -28,7 +28,7 @@ export default function Home() {
         if (storedToken) {
           const { token } = JSON.parse(storedToken);
           const response = await fetch(
-            "http://ec2-18-201-224-116.eu-west-1.compute.amazonaws.com:3001/auth/userLogged",
+            "https://calendary-app-backend.vercel.app/auth/userLogged",
             {
               method: "GET",
               headers: {
@@ -41,6 +41,7 @@ export default function Home() {
               localStorage.removeItem("jwtToken");
               setIsLoggedIn(false);
               setUserLogged({});
+              
             }
           } else {
             const userAuth = await response.json();
@@ -54,6 +55,7 @@ export default function Home() {
       setLoading(false);
     };
     checkLoggedIn();
+  
   }, [isLoggedIn]);
 
   const logout = () => {
@@ -63,13 +65,13 @@ export default function Home() {
   };
 
   return (
-    <main className={`h-screen px-20 bg-background ${theme} `}>
+    <main className={`min-h-screen px-20 bg-background ${theme} `}>
       {isLoggedIn ? (
         <>
           <div className="">
             <CalendarHeader logout={logout} />
           </div>
-          <div className="flex h-[80%]">
+          <div className="flex">
             <div className="w-1/5  border-y border-l border-border ">
             {/* border-gray-200 */}
               <Squad />
@@ -90,7 +92,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="w-full h-full">
+            <div className="w-full border border-border">
               <Week />
               <Month />
             </div>
